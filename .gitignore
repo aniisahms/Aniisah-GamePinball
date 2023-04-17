@@ -3,3 +3,4 @@ Pinball/Logs/*
 Pinball/Temp/*
 .vsconfig
 *.sln
+.DS_Store

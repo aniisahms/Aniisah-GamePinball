@@ -4,39 +4,41 @@ using UnityEngine;
 
 public class BumperController : MonoBehaviour
 {
-    [SerializeField] Collider ball;
+    [SerializeField] Collider ballCollider;
     [SerializeField] float multiplier;
-    [SerializeField] Color bumpedColor;
-    [SerializeField] Color notBumpedColor;
     private bool bumped;
 
     private Rigidbody rbBall;
-    private Renderer renderer;
+    private Renderer ballRenderer;
+
     private Animator animator;
+    [SerializeField] Material notBumpedMaterial;
+    [SerializeField] Material bumpedMaterial;
+    private Renderer bumperRenderer;
     
     private void Start() {
-        renderer = GetComponent<Renderer>();
+        ballRenderer = GetComponent<Renderer>();
+        bumperRenderer = GetComponent<Renderer>();
         animator = GetComponent<Animator>();
-        notBumpedColor = renderer.material.color;
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.collider == ball && !bumped)
+        if (collision.collider == ballCollider && !bumped)
         {
             bumped = true;
-            renderer.material.color = bumpedColor;
+            bumperRenderer.material = bumpedMaterial;
 
-            rbBall = ball.GetComponent<Rigidbody>();
+            rbBall = ballCollider.GetComponent<Rigidbody>();
             rbBall.velocity *= multiplier;
 
             animator.SetTrigger("Hit Trigger");
         }
     }
     private void OnCollisionExit(Collision collision) {
-        if (collision.collider == ball && bumped)
+        if (collision.collider == ballCollider && bumped)
         {
             bumped = false;
-            renderer.material.color = notBumpedColor;
+            bumperRenderer.material = notBumpedMaterial;
         }
     }
 }

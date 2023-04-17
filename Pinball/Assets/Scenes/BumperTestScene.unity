@@ -1376,7 +1376,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 1841492674}
     m_Modifications:
     - target: {fileID: 910588176, guid: 428dbbeb0c53c48bc8b1f35af30fdf88, type: 3}
-      propertyPath: ball
+      propertyPath: ballCollider
       value: 
       objectReference: {fileID: 1706893665}
     - target: {fileID: 6767554201324153792, guid: 428dbbeb0c53c48bc8b1f35af30fdf88, type: 3}
