@@ -116,6 +116,7 @@ MonoBehaviour:
   multiplier: 3
   notBumpedMaterial: {fileID: 2100000, guid: 1eb6256db69e8444b84eb8785f778d04, type: 2}
   bumpedMaterial: {fileID: 2100000, guid: 803fedf9fbf3c4896a1f63de9823860f, type: 2}
+  audioManager: {fileID: 0}
 --- !u!95 &1873240527
 Animator:
   serializedVersion: 5

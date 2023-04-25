@@ -16,6 +16,9 @@ public class LauncherController : MonoBehaviour
     [SerializeField] Material holdMaterial;
     private Renderer launcherRenderer;
 
+    public GameObject launcherAudioSource;
+    [SerializeField] AudioManager audioManager;
+
     private void Start() {
         launcherRenderer = GetComponent<Renderer>();
     }
@@ -31,6 +34,9 @@ public class LauncherController : MonoBehaviour
         if (Input.GetKey(input) && !isHold)
         {
             StartCoroutine(StartHold(collider));
+
+            // play sfx
+            audioManager.PlaySFX(collider.transform.position, launcherAudioSource);
         }
     }
 

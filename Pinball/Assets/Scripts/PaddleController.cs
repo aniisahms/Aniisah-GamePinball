@@ -11,6 +11,11 @@ public class PaddleController : MonoBehaviour
     private HingeJoint hJoint;
     private JointSpring jointSpring;
 
+    [SerializeField] Collider ball;
+    public GameObject paddleAudioSource;
+    [SerializeField] AudioManager audioManager;
+    private bool isHit = false;
+
     private void Start() {
         hJoint = GetComponent<HingeJoint>();
 
@@ -30,12 +35,22 @@ public class PaddleController : MonoBehaviour
         if (Input.GetKey(input))
         {
             jointSpring.targetPosition = targetPressed;
+            isHit = true;
         }
         else 
         {
             jointSpring.targetPosition = targetReleased;
+            isHit = false;
         }
 
         hJoint.spring = jointSpring;
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.collider == ball && isHit)
+        {
+            // play sfx
+            audioManager.PlaySFX(other.transform.position, paddleAudioSource);
+        }
     }
 }

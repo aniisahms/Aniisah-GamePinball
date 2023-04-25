@@ -15,6 +15,11 @@ public class BumperController : MonoBehaviour
     [SerializeField] Material notBumpedMaterial;
     [SerializeField] Material bumpedMaterial;
     private Renderer bumperRenderer;
+
+    [SerializeField] AudioManager audioManager;
+    public GameObject bumperAudioSource;
+    [SerializeField] VFXManager vfxManager;
+    public GameObject vfxBumper;
     
     private void Start() {
         ballRenderer = GetComponent<Renderer>();
@@ -31,7 +36,15 @@ public class BumperController : MonoBehaviour
             rbBall = ballCollider.GetComponent<Rigidbody>();
             rbBall.velocity *= multiplier;
 
+            // play animation
             animator.SetTrigger("Hit Trigger");
+            Debug.Log("Bumper animation played");
+
+            // play sfx
+            audioManager.PlaySFX(collision.transform.position, bumperAudioSource);
+
+            // play vfx
+            vfxManager.PlayVFX(collision.transform.position, vfxBumper);
         }
     }
     private void OnCollisionExit(Collision collision) {

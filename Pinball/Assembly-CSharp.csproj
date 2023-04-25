@@ -36,11 +36,18 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets/Scripts/VFXManager.cs" />
      <Compile Include="Assets/Scripts/PaddleController.cs" />
+     <Compile Include="Assets/Scripts/ZoomOutController.cs" />
+     <Compile Include="Assets/Scripts/ZoomInController.cs" />
      <Compile Include="Assets/Scripts/SwitchController.cs" />
+     <Compile Include="Assets/Scripts/VFXController.cs" />
      <Compile Include="Assets/Scripts/BallController.cs" />
+     <Compile Include="Assets/Scripts/AudioManager.cs" />
+     <Compile Include="Assets/Scripts/CameraController.cs" />
      <Compile Include="Assets/Scripts/BumperController.cs" />
      <Compile Include="Assets/Scripts/LauncherController.cs" />
+     <Compile Include="Assets/Scripts/SFXAudioController.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2021.3.18f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

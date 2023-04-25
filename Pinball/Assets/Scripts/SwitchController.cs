@@ -17,6 +17,16 @@ public class SwitchController : MonoBehaviour
     private Renderer switchRenderer;
     private SwitchState switchState;
 
+    [SerializeField] ZoomInController zoomInController;
+    [SerializeField] ZoomOutController zoomOutController;
+
+    public GameObject switchOnAudioSource;
+    public GameObject switchOffAudioSource;
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] VFXManager vfxManager;
+    public GameObject vfxSwitch;
+    private bool isOn;
+
 
     void Start()
     {
@@ -25,19 +35,46 @@ public class SwitchController : MonoBehaviour
         StartCoroutine(BlinkTimerStart(4));
     }
 
-    private void OnTriggerEnter(Collider collision) {
-        if (collision == ballCollider) {
+    private void OnTriggerEnter(Collider other) {
+        if (other == ballCollider)
+        {
             ToggleSwitch();
+            zoomInController.ZoomIn();
+
+            // play vfx
+            vfxManager.PlayVFX(other.transform.position, vfxSwitch);
+
+            if (isOn)
+            {
+                // play on sfx
+                audioManager.PlaySFX(other.transform.position, switchOnAudioSource);
+            }
+            else
+            {
+                // play off sfx
+                audioManager.PlaySFX(other.transform.position, switchOffAudioSource);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other == ballCollider)
+        {
+            zoomOutController.ZoomOut();
         }
     }
 
     private void SetActive(bool isActive) {
-        if (isActive == true) {
+        if (isActive == true)
+        {
+            isOn = true;
             switchState = SwitchState.switchOn;
             switchRenderer.material = switchOnMaterial;
             StopAllCoroutines();
         }
-        else {
+        else
+        {
+            isOn = false;
             switchState = SwitchState.switchOff;
             switchRenderer.material = switchOffMaterial;
             Debug.Log("SetActive: " + switchState);
@@ -45,10 +82,12 @@ public class SwitchController : MonoBehaviour
     }
 
     private void ToggleSwitch() {
-        if (switchState == SwitchState.switchOn) {
+        if (switchState == SwitchState.switchOn)
+        {
             SetActive(false);
         }
-        else {
+        else
+        {
             SetActive(true);
             Debug.Log("ToggleSwitch: " + switchState);
         }
@@ -57,7 +96,8 @@ public class SwitchController : MonoBehaviour
     private IEnumerator SwitchBlink(float times) {
         switchState = SwitchState.switchBlink;
 
-        for (int i = 0; i < times; i++) {
+        for (int i = 0; i < times; i++)
+        {
             switchRenderer.material = switchOnMaterial;
             yield return new WaitForSeconds(0.3f);
             switchRenderer.material = switchOffMaterial;
