@@ -50,7 +50,7 @@ public class PaddleController : MonoBehaviour
         if (other.collider == ball && isHit)
         {
             // play sfx
-            audioManager.PlaySFX(other.transform.position, paddleAudioSource);
+            audioManager.PlaySFX(transform.position, paddleAudioSource);
         }
     }
 }

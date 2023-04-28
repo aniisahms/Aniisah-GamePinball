@@ -36,7 +36,7 @@ public class LauncherController : MonoBehaviour
             StartCoroutine(StartHold(collider));
 
             // play sfx
-            audioManager.PlaySFX(collider.transform.position, launcherAudioSource);
+            audioManager.PlaySFX(transform.position, launcherAudioSource);
         }
     }
 

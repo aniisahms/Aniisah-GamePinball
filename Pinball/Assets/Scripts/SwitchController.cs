@@ -27,6 +27,8 @@ public class SwitchController : MonoBehaviour
     public GameObject vfxSwitch;
     private bool isOn;
 
+    public ScoreManager scoreManager;
+    public float score;
 
     void Start()
     {
@@ -39,20 +41,22 @@ public class SwitchController : MonoBehaviour
         if (other == ballCollider)
         {
             ToggleSwitch();
+
+            // zoom in camera
             zoomInController.ZoomIn();
 
             // play vfx
-            vfxManager.PlayVFX(other.transform.position, vfxSwitch);
+            vfxManager.PlayVFX(transform.position, transform.rotation, vfxSwitch);
 
             if (isOn)
             {
                 // play on sfx
-                audioManager.PlaySFX(other.transform.position, switchOnAudioSource);
+                audioManager.PlaySFX(transform.position, switchOnAudioSource);
             }
             else
             {
                 // play off sfx
-                audioManager.PlaySFX(other.transform.position, switchOffAudioSource);
+                audioManager.PlaySFX(transform.position, switchOffAudioSource);
             }
         }
     }
@@ -60,6 +64,7 @@ public class SwitchController : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (other == ballCollider)
         {
+            // zoom out camera
             zoomOutController.ZoomOut();
         }
     }
@@ -91,6 +96,9 @@ public class SwitchController : MonoBehaviour
             SetActive(true);
             Debug.Log("ToggleSwitch: " + switchState);
         }
+
+        // add score
+        scoreManager.AddScore(score);
     }
 
     private IEnumerator SwitchBlink(float times) {

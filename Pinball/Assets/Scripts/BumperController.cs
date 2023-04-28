@@ -20,6 +20,9 @@ public class BumperController : MonoBehaviour
     public GameObject bumperAudioSource;
     [SerializeField] VFXManager vfxManager;
     public GameObject vfxBumper;
+
+    public ScoreManager scoreManager;
+    public float score;
     
     private void Start() {
         ballRenderer = GetComponent<Renderer>();
@@ -41,10 +44,13 @@ public class BumperController : MonoBehaviour
             Debug.Log("Bumper animation played");
 
             // play sfx
-            audioManager.PlaySFX(collision.transform.position, bumperAudioSource);
+            audioManager.PlaySFX(transform.position, bumperAudioSource);
 
             // play vfx
-            vfxManager.PlayVFX(collision.transform.position, vfxBumper);
+            vfxManager.PlayVFX(transform.position, transform.rotation, vfxBumper);
+
+            // add score
+            scoreManager.AddScore(score);
         }
     }
     private void OnCollisionExit(Collision collision) {

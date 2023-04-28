@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5355544956408367120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.51, z: 0}
-  m_LocalScale: {x: 0.05, y: 1, z: 0.12}
+  m_LocalScale: {x: 0.05, y: 1, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,3 +114,12 @@ MonoBehaviour:
   ballCollider: {fileID: 0}
   switchOnMaterial: {fileID: 2100000, guid: cd9657f291b6349f8be3185bcc1f0253, type: 2}
   switchOffMaterial: {fileID: 2100000, guid: baee38d2456974533bcb18fa51007e4e, type: 2}
+  zoomInController: {fileID: 0}
+  zoomOutController: {fileID: 0}
+  switchOnAudioSource: {fileID: 7110374620968790615, guid: fca97f1191bdf41429b10e34aa20f06c, type: 3}
+  switchOffAudioSource: {fileID: 1841369517529772771, guid: cb0c12f0df96c45869b70168839b09ab, type: 3}
+  audioManager: {fileID: 0}
+  vfxManager: {fileID: 0}
+  vfxSwitch: {fileID: 8611763276690715923, guid: d5c6a1f63ad204bf5be4bf8c127f668c, type: 3}
+  scoreManager: {fileID: 0}
+  score: 10
