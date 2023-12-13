@@ -1,2 +1,2 @@
 # Aniisah-GamePinball
-AGC 3D Game Programming Submission
+AGC3 3D Game Programming Submission
